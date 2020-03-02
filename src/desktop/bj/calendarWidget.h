@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QVector>
-#include <QLabel>
+#include "calendarLabel.h"
 #include "../common/common.h"
 
 namespace Ui {
@@ -18,9 +18,19 @@ public:
     explicit CalendarWidget(eMonthValue month, int year = 0, QWidget *parent = nullptr);
     ~CalendarWidget();
 
+signals:
+    void    goToYear    ();
+    void    goToMonth   ();
+    void    goToDay     ();
+
+    //slots?
+    void    yearContext     ();
+    void    monthContext    ();
+    void    dayContext      ();
+
 private:
     Ui::CalendarWidget *mUi;
-    QVector <QLabel *>  mDaysVector;
+    QVector <CalendarLabel *>  mDaysVector;
 
     const int DAYS_IN_WEEK = 7;
 

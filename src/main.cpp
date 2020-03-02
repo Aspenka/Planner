@@ -3,13 +3,13 @@
     @author Поспелова Ирина
 */
 #include <QApplication>
-#include "desktop/bj/calendarWidget.h"
+#include "desktop/bj/yearWidget.h"
 
 int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
 
-    CalendarWidget w(DECEMBER, 2019);
+    YearWidget w;
     w.show();
 
     return a.exec();

@@ -30,14 +30,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="monthLabel">
+      <widget class="CalendarLabel" name="monthLabel">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="yearLabel">
+      <widget class="CalendarLabel" name="yearLabel">
        <property name="text">
         <string/>
        </property>
@@ -61,14 +61,14 @@
    <item>
     <layout class="QGridLayout" name="bodyLayout">
      <item row="2" column="0">
-      <widget class="QLabel" name="week2Label">
+      <widget class="CalendarLabel" name="week2Label">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="week3Label">
+      <widget class="CalendarLabel" name="week3Label">
        <property name="text">
         <string/>
        </property>
@@ -96,7 +96,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="week1Label">
+      <widget class="CalendarLabel" name="week1Label">
        <property name="text">
         <string/>
        </property>
@@ -117,14 +117,14 @@
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="week6Label">
+      <widget class="CalendarLabel" name="week6Label">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="week4Label">
+      <widget class="CalendarLabel" name="week4Label">
        <property name="text">
         <string/>
        </property>
@@ -145,7 +145,7 @@
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="week5Label">
+      <widget class="CalendarLabel" name="week5Label">
        <property name="text">
         <string/>
        </property>
@@ -155,6 +155,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CalendarLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">desktop/bj/calendarLabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

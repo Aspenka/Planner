@@ -1,7 +1,7 @@
 #include "calendarWidget.h"
 #include "ui_calendarWidget.h"
-#include <QLabel>
 #include <QDate>
+#include <QDebug>
 
 CalendarWidget::CalendarWidget(eMonthValue month, int year, QWidget *parent) :
     QWidget(parent), mUi(new Ui::CalendarWidget)
@@ -22,15 +22,20 @@ CalendarWidget::~CalendarWidget()
 
 void CalendarWidget::fillCalendar(eMonthValue month, int year)
 {
-    if(year == 0)
+    if(year != 0)
     {
-        year = QDate::currentDate().year();
+        mUi->yearLabel->setText(QString::number(year));
+        connect(mUi->yearLabel, &CalendarLabel::leftClicked,
+                this, &CalendarWidget::goToYear);
     }
     else
     {
-        mUi->yearLabel->setText(QString::number(year))  ;
+        year = QDate::currentDate().year();
     }
     setMonthName(month);
+    connect(mUi->monthLabel, &CalendarLabel::leftClicked,
+            this, &CalendarWidget::goToMonth);
+
     int currentDay = 1;
     QDate date(year, month, 1);
     int i = date.dayOfWeek();
@@ -38,7 +43,9 @@ void CalendarWidget::fillCalendar(eMonthValue month, int year)
     int currentRow = 1;
     for( ; currentDay <= size; ++currentDay)
     {
-        QLabel *day = new QLabel(QString::number(currentDay));
+        CalendarLabel *day = new CalendarLabel(QString::number(currentDay));
+        connect(day, &CalendarLabel::leftClicked,
+                this, &CalendarWidget::goToDay);
         mDaysVector.push_back(day);
         mUi->bodyLayout->addWidget(day, currentRow, i);
         ++i;
@@ -116,3 +123,4 @@ void CalendarWidget::setMonthName(eMonthValue month)
         }
     }
 }
+
