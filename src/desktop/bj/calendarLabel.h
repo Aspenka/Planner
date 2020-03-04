@@ -11,13 +11,24 @@ public:
     explicit CalendarLabel(QWidget *parent = nullptr);
     CalendarLabel(QString text = "", QWidget *parent = nullptr);
 
+    void    setSelectable   (bool f);
+
 signals:
     void    leftClicked     ();
     void    rightClicked    ();
 
-private:
-    void mousePressEvent(QMouseEvent *ev) override;
+    void    hoverEnter      ();
+    void    hoverLeave      ();
 
+public slots:
+    void    selectLabel     ();
+    void    unselectLabel   ();
+
+private:
+    void    mousePressEvent(QMouseEvent *ev) override;
+    bool    event   (QEvent *event) override;
+
+    bool    mSelectable;
 };
 
 #endif // CALENDARLABEL_H

@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QVector>
+#include <QMap>
+#include <QPixmap>
+#include <QPainter>
 #include "calendarLabel.h"
 #include "../common/common.h"
 
@@ -16,26 +19,36 @@ class CalendarWidget : public QWidget
 
 public:
     explicit CalendarWidget(eMonthValue month, int year = 0, QWidget *parent = nullptr);
-    ~CalendarWidget();
+    ~CalendarWidget() override;
+
+public slots:
+
 
 signals:
     void    goToYear    ();
     void    goToMonth   ();
     void    goToDay     ();
+    void    goToWeek    ();
 
-    //slots?
-    void    yearContext     ();
-    void    monthContext    ();
-    void    dayContext      ();
+private slots:
+    void    selectWeek      ();
+    void    unselectWeek    ();
 
 private:
-    Ui::CalendarWidget *mUi;
-    QVector <CalendarLabel *>  mDaysVector;
+    Ui::CalendarWidget                      *mUi;
+    QMap <int,QVector <CalendarLabel *>>    mDaysVector;
+    QVector <CalendarLabel *>               mWeeksVector;
+    int     mWeeksAmount;
+    bool    mWeekSelect;
+    QPoint  mCurrentWeekPos;
 
     const int DAYS_IN_WEEK = 7;
 
-    void    fillCalendar    (eMonthValue month, int year = 0);
-    void    setMonthName    (eMonthValue month);
+    void    fillCalendar        (eMonthValue month, int year = 0);
+    void    setMonthName        (eMonthValue month);
+    void    formWeeksContainer  (int size);
+    void    connectWeeks        (int size);
+    void    paintEvent          (QPaintEvent *event) override;
 };
 
 #endif // CALENDARWIDGET_H

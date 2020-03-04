@@ -12,6 +12,7 @@ YearWidget::YearWidget(int year, QWidget *parent) :
         mYear = QDate::currentDate().year();
     }
     mUi->yearLabel->setText(QString::number(mYear));
+    mUi->yearLabel->setSelectable(true);
 
     createCalendar(JANUARY);
     createCalendar(FEBRUARY);
