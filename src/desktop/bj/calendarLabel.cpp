@@ -2,7 +2,7 @@
 #include <QMouseEvent>
 
 CalendarLabel::CalendarLabel(QWidget *parent):
-    QLabel(parent)
+    QLabel(parent), mSelectable(false), mIsBold(false)
 {
     this->setAttribute(Qt::WA_Hover);
     this->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -10,7 +10,7 @@ CalendarLabel::CalendarLabel(QWidget *parent):
 }
 
 CalendarLabel::CalendarLabel(QString text, QWidget *parent):
-    QLabel(text, parent)
+    QLabel(text, parent), mSelectable(false), mIsBold(false)
 {
     this->setAttribute(Qt::WA_Hover);
     this->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -38,11 +38,36 @@ void CalendarLabel::setSelectable(bool f)
 void CalendarLabel::unselectLabel()
 {
     setStyleSheet("");
+    if(mIsBold)
+    {
+        setBold();
+    }
+}
+
+void CalendarLabel::setBold()
+{
+    setStyleSheet("QLabel { font: bold; }");
+    mIsBold = true;
+}
+
+void CalendarLabel::unsetBold()
+{
+    setStyleSheet("QLabel { font: normal; }");
+    mIsBold = false;
 }
 
 void CalendarLabel::selectLabel()
 {
-    setStyleSheet("QLabel { background-color : #74b5f2; }");
+
+    if(mIsBold)
+    {
+        setStyleSheet("QLabel { background-color : #74b5f2; "
+                      "font: bold;}");
+    }
+    else
+    {
+        setStyleSheet("QLabel { background-color : #74b5f2; }");
+    }
 }
 
 void CalendarLabel::mousePressEvent(QMouseEvent *ev)

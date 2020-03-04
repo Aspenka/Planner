@@ -20,14 +20,29 @@ CalendarWidget::~CalendarWidget()
 {
     if(!mDaysVector.isEmpty())
     {
-        foreach(QVector<CalendarLabel*> vector, mDaysVector.values())
+//        foreach(QVector<CalendarLabel*> vector, mDaysVector.values())
+//        {
+//            qDeleteAll(vector);
+//            vector.clear();
+//        }
+        if(!mDaysVector.isEmpty())
         {
-            qDeleteAll(vector);
-            vector.clear();
+            qDeleteAll(mDaysVector);
+            mDaysVector.clear();
         }
         mDaysVector.clear();
     }
     delete mUi;
+}
+
+void CalendarWidget::selectDay(int day)
+{
+    mDaysVector.at(day)->setBold();
+}
+
+void CalendarWidget::unselectDay(int day)
+{
+    mDaysVector.at(day)->unsetBold();
 }
 
 void CalendarWidget::selectWeek()
@@ -67,30 +82,28 @@ void CalendarWidget::fillCalendar(eMonthValue month, int year)
     int i = date.dayOfWeek();
     int size = date.daysInMonth();
     int currentRow = 1;
-    QVector <CalendarLabel *> week;
+
     for( ; currentDay <= size; ++currentDay)
     {       
         CalendarLabel *day = new CalendarLabel(QString::number(currentDay));
         day->setSelectable(true);
+        mDaysVector.append(day);
         connect(day, &CalendarLabel::leftClicked,
                 this, &CalendarWidget::goToDay);
 
-        week.push_back(day);
         mUi->bodyLayout->addWidget(day, currentRow, i);
+        if(i == 6 || i == 7)
+        {
+            day->setBold();
+        }
         ++i;
         if(i > DAYS_IN_WEEK)
         {
-            mDaysVector.insert(currentRow, week);
-            week.clear();
             i = 1;
             ++currentRow;
         }
     }
-    if(!week.isEmpty())
-    {
-        mDaysVector.insert(currentRow, week);
-        week.clear();
-    }
+
     mWeeksAmount = currentRow;
     formWeeksContainer(mWeeksAmount);
 }

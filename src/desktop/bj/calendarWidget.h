@@ -22,7 +22,8 @@ public:
     ~CalendarWidget() override;
 
 public slots:
-
+    void    selectDay   (int day);
+    void    unselectDay (int day);
 
 signals:
     void    goToYear    ();
@@ -36,7 +37,8 @@ private slots:
 
 private:
     Ui::CalendarWidget                      *mUi;
-    QMap <int,QVector <CalendarLabel *>>    mDaysVector;
+//    QMap <int,QVector <CalendarLabel *>>    mDaysVector;
+    QVector <CalendarLabel *>   mDaysVector;
     QVector <CalendarLabel *>               mWeeksVector;
     int     mWeeksAmount;
     bool    mWeekSelect;

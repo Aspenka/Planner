@@ -23,12 +23,15 @@ signals:
 public slots:
     void    selectLabel     ();
     void    unselectLabel   ();
+    void    setBold         ();
+    void    unsetBold       ();
 
 private:
     void    mousePressEvent(QMouseEvent *ev) override;
     bool    event   (QEvent *event) override;
 
     bool    mSelectable;
+    bool    mIsBold;
 };
 
 #endif // CALENDARLABEL_H
