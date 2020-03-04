@@ -20,11 +20,6 @@ CalendarWidget::~CalendarWidget()
 {
     if(!mDaysVector.isEmpty())
     {
-//        foreach(QVector<CalendarLabel*> vector, mDaysVector.values())
-//        {
-//            qDeleteAll(vector);
-//            vector.clear();
-//        }
         if(!mDaysVector.isEmpty())
         {
             qDeleteAll(mDaysVector);
@@ -33,6 +28,11 @@ CalendarWidget::~CalendarWidget()
         mDaysVector.clear();
     }
     delete mUi;
+}
+
+void CalendarWidget::yearIsVisible(bool f)
+{
+    mUi->yearLabel->setVisible(f);
 }
 
 void CalendarWidget::selectDay(int day)

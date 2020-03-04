@@ -17,6 +17,11 @@ public:
     explicit YearWidget(int year = 0, QWidget *parent = nullptr);
     ~YearWidget();
 
+private slots:
+    void    setPreviousYear ();
+    void    setNextYear     ();
+    void    checkYear       ();
+
 private:
     Ui::YearWidget  *mUi;
     int             mYear;
@@ -24,7 +29,15 @@ private:
     QVector
     <CalendarWidget*> mCalendarVector;
 
-    void    createCalendar  (eMonthValue monthName);
+    const QVector <eMonthValue> MONTHS =
+    {JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY,
+     AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER};
+
+    void    resetCalendar           (int year);
+    void    setCalendarWidget       ();
+    void    clearCalendarVector     ();
+    void    formCalendar            (int year);
+    void    createCalendarWidget    (eMonthValue monthName, int year);
 };
 
 #endif // YEARWIDGET_H

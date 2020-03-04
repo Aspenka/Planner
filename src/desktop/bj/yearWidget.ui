@@ -30,9 +30,23 @@
       </spacer>
      </item>
      <item>
+      <widget class="CalendarLabel" name="prevLabel">
+       <property name="text">
+        <string>&lt;&lt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="CalendarLabel" name="yearLabel">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CalendarLabel" name="nextLabel">
+       <property name="text">
+        <string>&gt;&gt;</string>
        </property>
       </widget>
      </item>

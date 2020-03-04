@@ -21,6 +21,8 @@ public:
     explicit CalendarWidget(eMonthValue month, int year = 0, QWidget *parent = nullptr);
     ~CalendarWidget() override;
 
+    void    yearIsVisible   (bool f);
+
 public slots:
     void    selectDay   (int day);
     void    unselectDay (int day);
