@@ -3,13 +3,14 @@
     @author Поспелова Ирина
 */
 #include <QApplication>
-#include "desktop/bj/yearWidget.h"
+#include "desktop/bj/taskWidget.h"
 
 int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
 
-    YearWidget w;
+    TaskWidget w;
+    w.addTitle("Планы");
     w.show();
 
     return a.exec();
