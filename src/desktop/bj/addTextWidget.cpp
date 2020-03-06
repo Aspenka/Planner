@@ -3,12 +3,24 @@
 
 AddTextWidget::AddTextWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AddTextWidget)
+    mUi(new Ui::AddTextWidget)
 {
-    ui->setupUi(this);
+    mUi->setupUi(this);
+    connect(mUi->addButton, &QPushButton::clicked,
+            this, &AddTextWidget::onAddButton);
 }
 
 AddTextWidget::~AddTextWidget()
 {
-    delete ui;
+    delete mUi;
+}
+
+void AddTextWidget::setFocus()
+{
+    mUi->textEdit->setFocus();
+}
+
+void AddTextWidget::onAddButton()
+{
+    emit sendTitle(mUi->textEdit->text());
 }

@@ -1,14 +1,14 @@
 #include "taskCheckBox.h"
 #include "ui_taskCheckBox.h"
 
-TaskCheckBox::TaskCheckBox(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::TaskCheckBox)
+TaskCheckBox::TaskCheckBox(const QString &title, QWidget *parent) :
+    QWidget(parent), mUi(new Ui::TaskCheckBox)
 {
-    ui->setupUi(this);
+    mUi->setupUi(this);
+    mUi->titleLabel->setText(title);
 }
 
 TaskCheckBox::~TaskCheckBox()
 {
-    delete ui;
+    delete mUi;
 }

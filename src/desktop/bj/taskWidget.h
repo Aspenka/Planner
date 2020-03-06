@@ -3,53 +3,12 @@
 
 #include <QWidget>
 #include <QVector>
-#include <QCheckBox>
-#include <QString>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QPair>
+#include "addTextWidget.h"
+#include "taskCheckBox.h"
 
 namespace Ui {
 class TaskWidget;
 }
-
-//class AddTitleWidget: public QWidget
-//{
-//    Q_OBJECT
-
-//public:
-//    AddTitleWidget(QWidget *parent = nullptr);
-//    ~AddTitleWidget() {}
-
-//signals:
-//    void    sendTitle   (const QString &title);
-//public slots:
-
-//private slots:
-//    void    getTitle    ();
-
-//private:
-//    QHBoxLayout mLayout;
-//    QLineEdit   mTitleEdit;
-//    QPushButton mSaveButton;
-//};
-
-//class CheckWidget: public QWidget
-//{
-//    Q_OBJECT
-
-//public:
-//    CheckWidget(QString title, QWidget *parent);
-//    ~CheckWidget() {}
-
-//private:
-//    QCheckBox   mCheckBox;
-//    QLabel      mTitleLabel;
-//    QHBoxLayout mLayout;
-//    QHorizontalSpacer
-//};
 
 class TaskWidget : public QWidget
 {
@@ -64,7 +23,7 @@ public:
 signals:
 
 public slots:
-    void    removeTask  (QCheckBox *task);
+    void    removeTask  (TaskCheckBox *task);
     void    addTask     (const QString &title);
 
 private slots:
@@ -74,12 +33,10 @@ private:
 
     Ui::TaskWidget *mUi;
     QString         mTitle;
-//    AddTitleWidget *mAddTitleWidget;
-//    QVector <QPair
-//    <QLabel*,QCheckBox *>>   mTaskVector;
+    AddTextWidget   *mAddTitleWidget;
+    QVector <TaskCheckBox *>   mTaskVector;
 
     void    mousePressEvent   (QMouseEvent *event) override;
-    void    removeAddTaskSidget ();
 };
 
 #endif // TASKWIDGET_H

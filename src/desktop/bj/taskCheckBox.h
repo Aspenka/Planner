@@ -12,11 +12,11 @@ class TaskCheckBox : public QWidget
     Q_OBJECT
 
 public:
-    explicit TaskCheckBox(QWidget *parent = nullptr);
+    explicit TaskCheckBox(const QString &title, QWidget *parent = nullptr);
     ~TaskCheckBox();
 
 private:
-    Ui::TaskCheckBox *ui;
+    Ui::TaskCheckBox *mUi;
 };
 
 #endif // TASKCHECKBOX_H

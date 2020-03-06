@@ -3,8 +3,8 @@
 #include <QMouseEvent>
 
 TaskWidget::TaskWidget(QWidget *parent) :
-    QWidget(parent), mUi(new Ui::TaskWidget)/*,
-    mAddTitleWidget(nullptr)*/
+    QWidget(parent), mUi(new Ui::TaskWidget),
+    mAddTitleWidget(nullptr)
 {
     mUi->setupUi(this);
     connect(mUi->addButton, &QPushButton::clicked,
@@ -15,15 +15,15 @@ TaskWidget::TaskWidget(QWidget *parent) :
 TaskWidget::~TaskWidget()
 {
     delete mUi;
-//    if(mAddTitleWidget != nullptr)
-//    {
-//        delete mAddTitleWidget;
-//    }
-//    if(!mTaskVector.isEmpty())
-//    {
-//        qDeleteAll(mTaskVector);
-//        mTaskVector.clear();
-//    }
+    if(mAddTitleWidget != nullptr)
+    {
+        delete mAddTitleWidget;
+    }
+    if(!mTaskVector.isEmpty())
+    {
+        qDeleteAll(mTaskVector);
+        mTaskVector.clear();
+    }
 }
 
 void TaskWidget::addTitle(const QString &title)
@@ -32,65 +32,42 @@ void TaskWidget::addTitle(const QString &title)
     mUi->titleLabel->setText(mTitle);
 }
 
-void TaskWidget::removeTask(QCheckBox *task)
+void TaskWidget::removeTask(TaskCheckBox *task)
 {
     Q_UNUSED(task)
 }
 
 void TaskWidget::addTask(const QString &title)
 {
-//    AddTitleWidget *widget = static_cast<AddTitleWidget *>(sender());
-//    if(widget != nullptr)
-//    {
-//        QCheckBox *task = new QCheckBox(title);
-//        task->setLayoutDirection(Qt::RightToLeft);
-//        mTaskVector.push_back(task);
-//        mUi->taskLayout->insertWidget(mTaskVector.size(), task);
-//        removeAddTaskSidget();
-//    }
+    if(mAddTitleWidget != nullptr)
+    {
+        TaskCheckBox *checkBox = new TaskCheckBox(title);
+        mTaskVector.push_back(checkBox);
+
+        delete mAddTitleWidget;
+        mAddTitleWidget = nullptr;
+
+        mUi->taskLayout->insertWidget(mTaskVector.size(), checkBox);
+    }
 }
 
 void TaskWidget::createNewTask()
 {
-//    if(mAddTitleWidget == nullptr)
-//    {
-//        mAddTitleWidget = new AddTitleWidget;
-//        connect(mAddTitleWidget, &AddTitleWidget::sendTitle,
-//                this, &TaskWidget::addTask);
-//        mUi->taskLayout->insertWidget(mTaskVector.size() + 1, mAddTitleWidget);
-//    }
+    mAddTitleWidget = new AddTextWidget();
+    connect(mAddTitleWidget, &AddTextWidget::sendTitle,
+            this, &TaskWidget::addTask);
+    mUi->taskLayout->insertWidget(mTaskVector.size() + 1, mAddTitleWidget);
+    mAddTitleWidget->setFocus();
 }
 
 void TaskWidget::mousePressEvent(QMouseEvent *event)
 {
-//     if(event->button() == Qt::LeftButton)
-//     {
-//         if(mAddTitleWidget != nullptr)
-//         {
-//            removeAddTaskSidget();
-//         }
-//     }
+    if(event->button() == Qt::LeftButton)
+    {
+        if(mAddTitleWidget != nullptr)
+        {
+            delete mAddTitleWidget;
+            mAddTitleWidget = nullptr;
+        }
+    }
 }
-
-void TaskWidget::removeAddTaskSidget()
-{
-//    mUi->taskLayout->removeWidget(mAddTitleWidget);
-//    mUi->taskLayout->update();
-//    delete mAddTitleWidget;
-//    mAddTitleWidget = nullptr;
-}
-
-//AddTitleWidget::AddTitleWidget(QWidget *parent): QWidget (parent),
-//    mSaveButton(tr("Добавить"))
-//{
-//    connect(&mSaveButton, &QPushButton::clicked,
-//            this, &AddTitleWidget::getTitle);
-//    mLayout.addWidget(&mTitleEdit);
-//    mLayout.addWidget(&mSaveButton);
-//    this->setLayout(&mLayout);
-//}
-
-//void AddTitleWidget::getTitle()
-//{
-//    emit sendTitle(mTitleEdit.text());
-//}
