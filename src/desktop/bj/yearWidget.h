@@ -14,7 +14,7 @@ class YearWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit YearWidget(int year = 0, QWidget *parent = nullptr);
+    explicit YearWidget(QWidget *parent = nullptr);
     ~YearWidget();
 
 private slots:

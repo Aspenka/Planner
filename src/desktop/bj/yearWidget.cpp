@@ -2,8 +2,8 @@
 #include "ui_yearWidget.h"
 #include <QDate>
 
-YearWidget::YearWidget(int year, QWidget *parent) :
-    QWidget(parent), mUi(new Ui::YearWidget), mYear(year)
+YearWidget::YearWidget(QWidget *parent) :
+    QWidget(parent), mUi(new Ui::YearWidget), mYear(QDate::currentDate().year())
 {
     mUi->setupUi(this);
 

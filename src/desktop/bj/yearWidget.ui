@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>117</width>
-    <height>56</height>
+    <width>161</width>
+    <height>48</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,16 +68,6 @@
    <item>
     <layout class="QGridLayout" name="monthLayout"/>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="TaskWidget" name="plansWidget" native="true"/>
-     </item>
-     <item>
-      <widget class="TaskWidget" name="goalsWidget" native="true"/>
-     </item>
-    </layout>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -85,12 +75,6 @@
    <class>CalendarLabel</class>
    <extends>QLabel</extends>
    <header location="global">desktop/bj/calendarLabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>TaskWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">desktop/bj/taskWidget.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

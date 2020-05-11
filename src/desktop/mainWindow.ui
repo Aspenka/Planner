@@ -6,45 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1035</width>
-    <height>608</height>
+    <width>330</width>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="bjTab">
-       <attribute name="title">
-        <string>Планировщик</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="kakeboTab">
-       <attribute name="title">
-        <string>Финансы</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="collectionTab">
-       <attribute name="title">
-        <string>Коллекции</string>
-       </attribute>
-      </widget>
-     </widget>
-    </item>
-   </layout>
+   <layout class="QHBoxLayout" name="horizontalLayout"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1035</width>
+     <width>330</width>
      <height>20</height>
     </rect>
    </property>

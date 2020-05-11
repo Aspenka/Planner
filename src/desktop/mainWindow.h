@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "startWidget.h"
+#include "bj/yearWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +17,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void    openPlanner     ();
+    void    openKakebo      ();
+    void    openCollections ();
+    void    openStartWidget ();
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *mUi;
 };
 
 #endif // MAINWINDOW_H
